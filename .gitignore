@@ -1,4 +1,4 @@
 *.doc
 *.retry
-templates/awscreds.yml
-templates/my_keypair.pem
+ec2_lauch/templates/awscreds.yml
+ec2_lauch/templates/my_keypair.pem
