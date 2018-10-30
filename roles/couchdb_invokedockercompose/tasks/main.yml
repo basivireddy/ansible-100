@@ -1,0 +1,21 @@
+---
+- file:
+    path: /root/couchdb/
+    state: directory
+
+- name: git clone https://github.com/basivireddy/apache.git
+  copy:
+      dest: "/root/couchdb/docker-compose.yml"
+      content: |
+          version: "2"
+          services:
+            memcached:
+               image: couchdb:latest
+               restart: always
+               ports:
+                - "5984:5984"
+
+- name: docker-compose  up
+  shell: docker-compose up -d
+  args:
+    chdir: /root/couchdb/
