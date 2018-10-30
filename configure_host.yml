@@ -1,0 +1,17 @@
+--- # This is structural YAML example to install HTTPD on Centos 7
+
+- hosts: assignment
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+
+  vars:
+    host1: "MSR-test-Instance-1"
+    host2: "MSR-test-Instance-2"
+    imageid: "ami-0e32ec5bc225539f5"   #Ubuntu Server 16.04 LTS (HVM)
+    instance_type: "t2.micro"
+
+  roles:
+    - ec2
