@@ -6,7 +6,5 @@
   become: yes
   gather_facts: no
 
-  vars:
-    nodeversion : 8.12.0
   roles:
-    #- basicpackages
+    - basicpackages
