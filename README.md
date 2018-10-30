@@ -1,6 +1,14 @@
 
 
 ### Launch the Ec2 Instances using Ansible
+
+1. Install awscli
+```
+pip install awscli
+
+aws configure
+
+```
 1. create the aws-creditails file
 ```
 mkdir templates
