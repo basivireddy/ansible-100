@@ -1,0 +1,24 @@
+--- # install basic packages
+
+- name: update the packages
+  raw: apt-get update
+
+- name: install the python-apt
+  raw: apt-get -y install python-apt
+
+- name: apt-get update the server
+  apt:
+   update_cache=yes
+
+- name: Install the basicpackages "net-tools,iproute2,wget,tcpdump,htop,vim ,git and ntp"
+  apt: name={{ item }} state=latest
+  with_items:
+   - net-tools
+   - iproute2
+   - wget
+   - vim
+   - bridge-utils
+   - curl
+   - python
+   - software-properties-common
+   - git
