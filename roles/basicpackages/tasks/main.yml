@@ -22,3 +22,4 @@
    - python
    - software-properties-common
    - git
+   - openssl
