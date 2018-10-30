@@ -1,0 +1,10 @@
+---
+- name: git clone https://github.com/basivireddy/apache.git
+  git:
+    repo: 'https://github.com/basivireddy/apache.git'
+    dest: /root/apache/
+
+- name: docker-compose  up
+  shell: docker-compose up -d
+  args:
+    chdir: /root/apache
