@@ -1,0 +1,39 @@
+--- # conig docker
+- name: check if docker is installed
+  register: docker_installed
+  command: docker version
+  ignore_errors: true
+
+- name:  Install prerequisites
+  apt:  name={{item}} update_cache=yes
+  with_items:
+     - apt-transport-https
+     - ca-certificates
+     - curl
+     - software-properties-common
+
+- name:    Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+
+- name:    Add Docker APT repository
+  apt_repository:
+     repo: deb https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+
+- name:  upadte packages
+  apt:  update_cache=yes
+
+- name:   Install Docker
+  apt:
+    name: docker-ce=18.06*
+    update_cache: yes
+
+- name: set vimo public docker  repo
+  raw: echo "{ \"insecure-registries\":[\"0.0.0.0/0\"] }" >   /etc/docker/daemon.json
+  notify: restart docker
+
+- name: download dockercompose file
+  get_url:
+    url: https://github.com/docker/compose/releases/download/{{dockercompose_version}}/docker-compose-Linux-{{ansible_architecture}}
+    dest: /usr/bin/docker-compose
+    mode: 0550
