@@ -1,0 +1,43 @@
+--- # install basic packages
+
+#- name: apt-get update the server
+#  apt:
+#   update_cache=yes
+
+- name: Install packages build-essential and libssl-dev
+  apt: name={{ item }} state=latest
+  with_items:
+   - build-essential
+   - libssl-dev
+
+- name: Check if Node installed
+  register: node_installed
+  command: node -v
+  ignore_errors: true
+
+- name: Downlaod node install file
+  get_url: url=https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh dest=/tmp/install.sh
+  when: node_installed|failed
+
+
+- name: Run Node install script
+  raw: chmod +x /tmp/install.sh ; sh /tmp/install.sh
+  when: node_installed|failed
+
+- name: Install node {{ nodeversion }}
+  sudo: no
+  shell: export NVM_DIR="/root/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install {{ nodeversion }} && nvm use {{ nodeversion }} && nvm alias default {{ nodeversion }}
+  when: node_installed|failed
+
+
+- name: Copy node exec to /usr/bin
+  command: cp /root/.nvm/{{ nodeversion }}/bin/node /usr/bin/
+  when: node_installed|failed
+
+- name: Copy node exec as nodejs service
+  command: cp /root/.nvm/{{ nodeversion }}/bin/node /usr/bin/nodejs
+  when: node_installed|failed
+
+
+- name: Copy npm
+  shell: cp -r /root/.nvm/{{ nodeversion }}/lib/node_modules/npm/ /usr/share/ && ln -s /usr/share/npm/bin/npm-cli.js /usr/bin/npm
