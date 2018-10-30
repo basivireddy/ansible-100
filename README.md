@@ -16,6 +16,11 @@ EOF
 
 ```
 ansible-playbook ec2_lauch.yml 
+cat << EOF >> /etc/ansible/hosts
+[assignment]
+
+
+EOF
 
 ```
 cat << EOF >> /etc/ansible/hosts
@@ -24,7 +29,6 @@ cat << EOF >> /etc/ansible/hosts
 
 EOF
 
-EOF
 3. Install Basic Packages
 
 ```
@@ -34,5 +38,17 @@ ansible-playbook configure_host2.yml
 
 ```
 
+4. Run webserver
+```
+ansible-playbook apache_invokedockercompose.yml -e "webserver=host1"
 
+
+```
+
+5. Run Couchdb
+```
+
+ansible-playbook couchdb_invokedockercompose.yml -e "couchdb=host2"
+
+```
 
