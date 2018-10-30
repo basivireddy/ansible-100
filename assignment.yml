@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  gather_facts: yes
+
+  vars_files:
+    - templates/awscreds.yml
+
+  vars:
+    host1: "MSR-test-Instance-1"
+    host2: "MSR-test-Instance-2"
+    imageid: "ami-0e32ec5bc225539f5"   #Ubuntu Server 16.04 LTS (HVM)
+    instance_type: "t2.micro"
+
+  roles:
+    - ec2

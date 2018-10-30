@@ -1,0 +1,4 @@
+*.doc
+*.retry
+templates/awscreds.yml
+templates/my_keypair.pem
