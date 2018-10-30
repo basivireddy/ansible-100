@@ -18,16 +18,13 @@ EOF
 ansible-playbook ec2_lauch.yml 
 cat << EOF >> /etc/ansible/hosts
 [assignment]
-
+host1  ansible_host= ansible_user=ubuntu ansible_ssh_private_key_file=templates/mykeypair.pem
+host2  ansible_host= ansible_user=ubuntu ansible_ssh_private_key_file=templates/mykeypair.pem
 
 EOF
 
 ```
-cat << EOF >> /etc/ansible/hosts
-[assignment]
 
-
-EOF
 
 3. Install Basic Packages
 
