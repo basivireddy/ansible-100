@@ -6,8 +6,9 @@
 
     - name: save key pair on localhost
       copy:
-        content: "{{ my_keypair }}"
+        content: "{{ my_keypair.key.private_key }}"
         dest: templates/my_keypair.pem
+        mode: 0400
 
     - name: Create a security group
       ec2_group:
