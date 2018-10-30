@@ -4,11 +4,12 @@
   become_method: sudo
   connection: ssh
   become: yes
-  gather_facts: yes
+  gather_facts: no
 
   vars:
     nodejs_version : 8.12.0
-    dockercompose_version: 1.22.0 
+    dockercompose_version: 1.22.0
+
   roles:
-      #- nodeinstall
       - docker
+      - nodeinstall
