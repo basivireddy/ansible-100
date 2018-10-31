@@ -4,7 +4,7 @@
   become_method: sudo
   connection: ssh
   become: yes
-  gather_facts: no
+  gather_facts: yes
 
   vars:
     nodejs_version : 8.12.0
