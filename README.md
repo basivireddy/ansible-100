@@ -24,12 +24,6 @@ EOF
 
 ```
 ansible-playbook ec2_lauch.yml 
-cat << EOF >> /etc/ansible/hosts
-[assignment]
-host1  ansible_host= ansible_user=ubuntu ansible_ssh_private_key_file=templates/my_keypair.pem
-host2  ansible_host= ansible_user=ubuntu ansible_ssh_private_key_file=templates/my_keypair.pem
-
-EOF
 
 ```
 
@@ -38,14 +32,15 @@ EOF
 
 ```
 
-ansible-playbook configure_host.yml
-ansible-playbook configure_host2.yml
+ansible-playbook -i hosts configure_host.yml
+
+ansible-playbook -i hosts configure_host2.yml
 
 ```
 
 4. Run webserver
 ```
-ansible-playbook apache_invokedockercompose.yml -e "webserver=host1"
+ansible-playbook -i hosts apache_invokedockercompose.yml
 
 
 ```
@@ -53,7 +48,7 @@ ansible-playbook apache_invokedockercompose.yml -e "webserver=host1"
 5. Run Couchdb
 ```
 
-ansible-playbook couchdb_invokedockercompose.yml -e "couchdb=host2"
+ansible-playbook -i hosts couchdb_invokedockercompose.yml
 
 ```
 
