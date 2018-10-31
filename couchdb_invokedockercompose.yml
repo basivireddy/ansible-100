@@ -1,6 +1,6 @@
 --- # This is structural YAML example to install HTTPD on Centos 7
 
-- hosts: {{ couchdb }}
+- hosts: couchdb
   become_method: sudo
   connection: ssh
   become: yes
