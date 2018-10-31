@@ -10,9 +10,9 @@
         dest: templates/my_keypair.pem
         mode: 0400
 
-    - name: Create a security group
+    - name: Create a security group for ssh and http
       ec2_group:
-        name: "my_sg"
+        name: "my_sg1"
         description: The webservers security group
         region: "us-west-2"
         rules:
@@ -24,27 +24,43 @@
             from_port: 80
             to_port: 80
             cidr_ip: 0.0.0.0/0
-    - name: Launching an EC2 Instance hostname MSR-test-Instance-1
+
+    - name: Create a security group for ssh and couchdb
+      ec2_group:
+        name: "my_sg2"
+        description: The webservers security group
+        region: "us-west-2"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 5984
+            to_port: 5984
+            cidr_ip: 0.0.0.0/0
+
+    - name: Launching an EC2 Instance hostname {{ host1 }}
       ec2:
         instance_type : "{{ instance_type }}"
         image: "{{ imageid }}"
         region: "us-west-2"
         keypair: "my_keypair"
         count: 1
-        group: "my_sg"
+        group: "my_sg1"
         instance_tags:
           Name: "{{ host1 }}"
         wait: true
         #assign_public_ip: yes
 
-    - name: Launching an EC2 Instance hostname MSR-test-Instance-2
+    - name: Launching an EC2 Instance hostname {{ host2 }}
       ec2:
         instance_type : "{{ instance_type }}"
         image: "{{ imageid }}"
         region: "us-west-2"
         keypair: "my_keypair"
         count: 1
-        group: "my_sg"
+        group: "my_sg2"
         instance_tags:
             Name: "{{ host2 }}"
         wait: true
