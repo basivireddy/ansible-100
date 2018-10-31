@@ -28,7 +28,7 @@
     name: docker-ce=18.06*
     update_cache: yes
 
-- name: set vimo public docker  repo
+- name: set docker  repo
   raw: echo "{ \"insecure-registries\":[\"0.0.0.0/0\"] }" >   /etc/docker/daemon.json
   notify: restart docker
 
