@@ -28,7 +28,7 @@
     name: docker-ce=18.06*
     update_cache: yes
 
-- name: set docker  repo
+- name: allow private docker registries
   raw: echo "{ \"insecure-registries\":[\"0.0.0.0/0\"] }" >   /etc/docker/daemon.json
   notify: restart docker
 
