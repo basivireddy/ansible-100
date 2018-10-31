@@ -16,7 +16,7 @@
   ignore_errors: true
 
 - name: Downlaod node install file
-  get_url: url=https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh dest=/tmp/install.sh
+  get_url: url=https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh dest=/tmp/install.sh
   when: node_installed|failed
 
 
