@@ -26,18 +26,5 @@
 
 - name: Install node {{ nodeversion }}
   sudo: no
-  shell: export NVM_DIR="/root/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install {{ nodeversion }} && nvm use {{ nodeversion }} && nvm alias default {{ nodeversion }}
+  shell: export NVM_DIR="/root/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install {{ nodejs_version }} && nvm use {{ nodejs_version }} && nvm alias default {{ nodejs_version }}
   when: node_installed|failed
-
-
-- name: Copy node exec to /usr/bin
-  command: cp /root/.nvm/{{ nodeversion }}/bin/node /usr/bin/
-  when: node_installed|failed
-
-- name: Copy node exec as nodejs service
-  command: cp /root/.nvm/{{ nodeversion }}/bin/node /usr/bin/nodejs
-  when: node_installed|failed
-
-
-- name: Copy npm
-  shell: cp -r /root/.nvm/{{ nodeversion }}/lib/node_modules/npm/ /usr/share/ && ln -s /usr/share/npm/bin/npm-cli.js /usr/bin/npm
