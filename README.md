@@ -1,6 +1,6 @@
 
 
-### Launch the Ec2 Instances using Ansible
+### Launch the Ec2 Instances using Terraform
 
 1. terraform
 ```
