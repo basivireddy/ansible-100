@@ -1,6 +1,4 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
   region     = "${var.aws_region}"
 }
 
@@ -48,7 +46,7 @@ resource "aws_security_group" "dev_sg2" {
   }
 }
 
-resource "aws_instance" "app" {
+resource "aws_instance" "app1" {
   count = 1
 
   ami           = "ami-0e32ec5bc225539f5"
