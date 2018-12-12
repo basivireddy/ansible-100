@@ -2,3 +2,6 @@
 *.retry
 templates/awscreds.yml
 templates/my_keypair.pem
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
