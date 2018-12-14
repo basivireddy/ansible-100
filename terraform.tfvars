@@ -1,0 +1,5 @@
+aws_region = "us-west-2"
+public_key_path = "/home/ec2-user/.ssh/id_rsa.pub"
+private_key_path = "/home/ec2-user/.ssh/id_rsa"
+key_name = "test_key"
+localip = "0.0.0.0/0"

@@ -3,7 +3,7 @@
     path: /root/couchdb/
     state: directory
 
-- name: git clone https://github.com/basivireddy/apache.git
+- name: couchdb cointainer start
   copy:
       dest: "/root/couchdb/docker-compose.yml"
       content: |

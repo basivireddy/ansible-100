@@ -4,8 +4,13 @@
 
 1. terraform
 ```
-cd terraform
+
+ssh-keygen
+
+modify the public_key_path varibales in terraform.tfvars
+
 terraform init
+terraform plan
 terraform apply
 terraform show
 
@@ -14,16 +19,14 @@ terraform show
 2. Install Basic Packages
 
 ```
-
-ansible-playbook -i hosts configure_host.yml
-
-ansible-playbook -i hosts configure_host2.yml
+ansible-playbook -i aws_hosts basicpackages.yml
+ansible-playbook -i aws_hosts configure_hosts.yml
 
 ```
 
 3. Run webserver
 ```
-ansible-playbook -i hosts apache_invokedockercompose.yml
+ansible-playbook -i aws_hosts webserver.yml
 
 
 ```
@@ -31,7 +34,7 @@ ansible-playbook -i hosts apache_invokedockercompose.yml
 4. Run Couchdb
 ```
 
-ansible-playbook -i hosts couchdb_invokedockercompose.yml
+ansible-playbook -i aws_hosts dbserver.yml
 
 ```
 

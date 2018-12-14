@@ -5,6 +5,7 @@
   connection: ssh
   become: yes
   gather_facts: yes
+  remote_user: ubuntu
 
   vars:
     nodejs_version : 8.12.0
